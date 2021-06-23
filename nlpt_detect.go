@@ -22,50 +22,50 @@ import (
 //   percent3 is an array of the text percentages 0..100 of the top 3 languages
 // CLD2 returns the 3 highest ranked languages, the 3 best percentages, and the 3 best normalized scores... all of which are returned from CLD2 as arrays. The integer value here is the index of the array to return.
 func Detect(s string, format string, buffer_length, rank, percent, normal_score int) string {
-	lang, err := cld2_nlpt.DetectExtendedLanguage(s, format, buffer_length, rank, percent, normal_score)
+	lang, err := cld2.DetectExtendedLanguage(s, format, buffer_length, rank, percent, normal_score)
 	if err != nil {
 		log.Fatal(err)
 	}
-	return string(cld2_nlpt.Language(lang))
+	return string(cld2.Language(lang))
 }
 
 func StaticDetect(s string) string {
-	lang, err := cld2_nlpt.SimpleDetect(s)
+	lang, err := cld2.SimpleDetect(s)
 	if err != nil {
 		log.Fatal(err)
 	}
-	return string(cld2_nlpt.Language(lang))
+	return string(cld2.Language(lang))
 }
 
 // GetLanguageName returns the the name (for example 'ENGLISH') of detected text.
 // If it cannot determine the text then 'ENGLISH' is returned by default.
 // It does guarantee the greatest amount of accuracy and will return ENGLISH if it probable identification is not reliable.
 func GetLanguageName(s string) string {
-	lang, err := cld2_nlpt.DetectLanguage(len(s), s, "name")
+	lang, err := cld2.DetectLanguage(len(s), s, "name")
 	if err != nil {
 		log.Fatal(err)
 	}
-	return string(cld2_nlpt.Language(lang))
+	return string(cld2.Language(lang))
 }
 
 // GetLanguageCode returns the the code('en') of detected text.
 // It should be used for testing or demos or simple text.
 // It does guarantee the greatest amount of accuracy and will return 'en' if it probable identification is not reliable.
 func GetLanguageCode(s string) string {
-	lang, err := cld2_nlpt.DetectLanguage(len(s), s, "code")
+	lang, err := cld2.DetectLanguage(len(s), s, "code")
 	if err != nil {
 		log.Fatal(err)
 	}
-	return string(cld2_nlpt.Language(lang))
+	return string(cld2.Language(lang))
 }
 
 // GetLanguageDeclaredName returns the the name('ENGLISH') of detected text.
 // It should be used for testing or demos or simple text.
 // It does guarantee the greatest amount of accuracy.
 func GetLanguageDeclaredName(s string) string {
-	lang, err := cld2_nlpt.DetectLanguage(len(s), s, "declname")
+	lang, err := cld2.DetectLanguage(len(s), s, "declname")
 	if err != nil {
 		log.Fatal(err)
 	}
-	return string(cld2_nlpt.Language(lang))
+	return string(cld2.Language(lang))
 }
